@@ -1,6 +1,6 @@
 let data;
 function Giorno(sesso) {
-    if (sesso) {
+    if (sesso==="male") {
         return data.charAt(8) + data.charAt(9);
     } else {
         return (4 + +data.charAt(8)) + data.charAt(9);
@@ -177,12 +177,16 @@ function LuogoN(comune) {
 
 const cin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 function codiceFiscale() {
-    let nome = document.getElementById("nom");
-    let cognome = document.getElementById("cogn");
-    data = document.getElementById("data");
-    let sesso= document.getElementById("uomo");
-    let comune = document.getElementById("com");
-    let out = Consonanti(cognome) + Consonanti(nome) + data.charAt(2) + data.charAt(3) + month(data.charAt(5) + data.charAt(6)) + giorno(sesso) + luogoN(comune);
+    let nome = document.getElementById("nom").value;
+	let cognome = document.getElementById("cogn").value;
+	data = document.getElementById("data").value;
+
+    let sesso= document.getElementById("sesso").value;
+
+    let comune = document.getElementById("com").value;
+
+	alert(LuogoN(comune));
+    let out = Consonanti(cognome) + Consonanti(nome) + data.charAt(2) + data.charAt(3) + Mensilita(data.charAt(5) + data.charAt(6)) + Giorno(sesso) + LuogoN(comune);
     out += controlloFinale(out);
     alert(out);
 }
@@ -217,5 +221,5 @@ function controlloFinale(code) {
     let char = 0;
     for (let i = 0; i < 15; i++)
         char += i % 2 === 0 ? isDisp[code.charAt(i)] : isPari[code.charAt(i)];
-    return cin.charAt(char % 26);
+	return cin.charAt(char % 26);
 }
